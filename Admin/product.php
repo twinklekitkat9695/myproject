@@ -1,5 +1,7 @@
 <?php include("header.php");?>
       <?php include("sidebar.php");?>
+      <?php include("config.php");?>
+
 
       <div id="main-content"> <!-- Main Content Section with everything -->
 
@@ -12,7 +14,7 @@
       </noscript>
 
       <!-- Page Head -->
-      <h2>Welcome John</h2>
+      <h2>Welcome Twinkle</h2>
       <p id="page-intro">What would you like to do?</p>
 
       <div class="clear"></div> <!-- End .clear -->
@@ -24,8 +26,8 @@
       <h3>Content box</h3>
 
       <ul class="content-box-tabs">
-        <li><a href="#tab1" class="default-tab">Table</a></li> <!-- href must be unique and match the id of target div -->
-        <li><a href="#tab2">Forms</a></li>
+        <li><a href="product.php" class="default-tab">Manage</a></li> <!-- href must be unique and match the id of target div -->
+        <li><a href="#tab2">Add Products</a></li>
       </ul>
 
       <div class="clear"></div>
@@ -43,21 +45,27 @@
           </div>
         </div>
         
-        <table>
+        <!--<table id="table-data">
           
           <thead>
             <tr>
                 <th><input class="check-all" type="checkbox" /></th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Category</th>
+                <th>Action</th>
             </tr>
+            <tr><td id="table-data"></td></tr>
             
           </thead>
+        </table>-->
+        
+    <?php
+        display();
+    ?>
           
-          <tfoot>
+        <!--  <tfoot>
             <tr>
               <td colspan="6">
                 <div class="bulk-actions align-left">
@@ -76,7 +84,7 @@
                   <a href="#" class="number current" title="3">3</a>
                   <a href="#" class="number" title="4">4</a>
                   <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
-                </div> <!-- End .pagination -->
+                </div> <!- End .pagination 
                 <div class="clear"></div>
               </td>
             </tr>
@@ -84,13 +92,27 @@
           
           <tbody>
             <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!-- Icons -->
+                <td><input type="checkbox" /></td>
+                <td>Lorem ipsum dolor</td>
+                <td><a href="#" title="title">Sit amet</a></td>
+                <td>Consectetur adipiscing</td>
+                <td>Donec tortor diam</td>
+                <td>
+                <!- Icons 
+                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
+                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
+                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
+              </td>
+            </tr>
+            
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>Lorem ipsum dolor</td>
+                <td><a href="#" title="title">Sit amet</a></td>
+                <td>Consectetur adipiscing</td>
+                <td>Donec tortor diam</td>
+                <td>
+                <!- Icons 
                   <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
                   <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
@@ -104,7 +126,7 @@
               <td>Consectetur adipiscing</td>
               <td>Donec tortor diam</td>
               <td>
-                <!-- Icons -->
+                <!- Icons 
                   <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
                   <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
@@ -118,7 +140,7 @@
               <td>Consectetur adipiscing</td>
               <td>Donec tortor diam</td>
               <td>
-                <!-- Icons -->
+                <!- Icons 
                   <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
                   <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
@@ -132,7 +154,7 @@
               <td>Consectetur adipiscing</td>
               <td>Donec tortor diam</td>
               <td>
-                <!-- Icons -->
+                <!- Icons 
                   <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
                   <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
@@ -146,7 +168,7 @@
               <td>Consectetur adipiscing</td>
               <td>Donec tortor diam</td>
               <td>
-                <!-- Icons -->
+                <!- Icons 
                   <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
                   <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
@@ -160,7 +182,7 @@
               <td>Consectetur adipiscing</td>
               <td>Donec tortor diam</td>
               <td>
-                <!-- Icons -->
+                <!- Icons 
                   <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
                   <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
@@ -174,82 +196,51 @@
               <td>Consectetur adipiscing</td>
               <td>Donec tortor diam</td>
               <td>
-                <!-- Icons -->
+                <!- Icons 
                   <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
+                  <a href="#" title="Delete"><img src=ages/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
               </td>
             </tr>
-            
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!-- Icons -->
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-          </tbody>
+          </tbody>"resources/im
           
-        </table>
+        </table>*/
         
-      </div> <!-- End #tab1 -->
+      </div>-- End #tab1 -->
 
       <div class="tab-content" id="tab2">
 
-        <form action="#" method="post">
+        <form method="post">
           
           <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
             
             <p>
-              <label>Small form input</label>
-                <input class="text-input small-input" type="text" id="small-input" name="small-input" /> <span class="input-notification success png_bg">Successful message</span> <!-- Classes for input-notification: success, error, information, attention -->
-                <br /><small>A small description of the field</small>
+              <label>Product Name</label>
+                  <input class="text-input small-input" type="text" id="name" name="input1" /> <!--<span class="input-notification success png_bg">Successful message</span> <!- Classes for input-notification: success, error, information, attention -->
+                  <br /><small>Name of product which is not inside database</small>
             </p>
             
             <p>
-              <label>Medium form input</label>
-              <input class="text-input medium-input datepicker" type="text" id="medium-input" name="medium-input" /> <span class="input-notification error png_bg">Error message</span>
+                <label>Product Price</label>
+                <input class="text-input medium-input datepicker" type="text" id="price" name="input2" /> <!--<span class="input-notification error png_bg">Error message</span>-->
             </p>
             
             <p>
-              <label>Large form input</label>
-              <input class="text-input large-input" type="text" id="large-input" name="large-input" />
+                <label>Image Path</label>
+                <input class="text-input large-input" type="text" id="path" name="input3" />
+            </p>
+              <label>Choose Category</label>              
+                  <select class="small-input" id='cid' name="input4">
+                      <option class="one" value="Men">Men</option>
+                      <option class="one" value="Women">Women</option>
+                      <option class="one" value="Kids">Kids</option>
+                      <option class="one" value="Electronics">Electronics</option>
+                      <option class="one" value="Sports">Sports</option>
+                  </select> 
             </p>
             
             <p>
-              <label>Checkboxes</label>
-              <input type="checkbox" name="checkbox1" /> This is a checkbox <input type="checkbox" name="checkbox2" /> And this is another checkbox
-            </p>
-            
-            <p>
-              <label>Radio buttons</label>
-              <input type="radio" name="radio1" /> This is a radio button<br />
-              <input type="radio" name="radio2" /> This is another radio button
-            </p>
-            
-            <p>
-              <label>This is a drop down list</label>              
-              <select name="dropdown" class="small-input">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                <option value="option4">Option 4</option>
-              </select> 
-            </p>
-            
-            <p>
-              <label>Textarea with WYSIWYG</label>
-              <textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
-            </p>
-            
-            <p>
-              <input class="button" type="submit" value="Submit" />
+                <input type="submit" name="submit" value="Submit" id="save"/>
             </p>
             
           </fieldset>
@@ -257,91 +248,94 @@
           <div class="clear"></div><!-- End .clear -->
           
         </form>
+        <?php
+       /* if (isset($_POST['submit'])) {
+            $name=isset($_POST['input1']) ? $_POST['input1'] : '';
+            $price=isset($_POST['input2']) ? $_POST['input2'] : '';
+            $path=isset($_POST['input3']) ? $_POST['input3'] : '';
+            $cid=isset($_POST['input4']) ? $_POST['input4'] : '';
+            if ($name == "" || $price == "" || $path =="" || $cid=="") {
+                echo '<script>$("#error-message").html("All fields are required.").slideDown();
+                $("#success-message").slideUp()</script>';
+            } else {
+              $sql="INSERT INTO products (`name`, `price`, `path`, `cid`)
+              VALUES ('".$name."', '".$price."', '".$path."',(SELECT cid FROM categories 
+              WHERE cname = '".$cid."'))";*/
+                /*$sql="INSERT INTO products (`name`, `price`, `path`, `cid`)
+                VALUES ('".$name."', '".$price."', '".$path."','".$cid."')";*/
+                /*if ($conn-> query($sql) == true) {
+                    echo "success";
+                } else {
+                    echo "Failed";*/
+                    /*$sql="INSERT INTO products (`name`, `price`, `path`, `cid`) 
+                    select $name,
+                          $price,
+                          $path,
+                          cid
+                      from categories where cname = $cid";*/
+                /*}
+                if ($conn-> query($sql) == true) {
+              
+                    echo "<script> alert('New record created successfully');</script>";
+                } else {
+                    echo "Error : " .$sql. "<br>" .$conn -> error;
+                }
+      
+                  $conn -> close();
+            }*/
+        ?>
         
       </div> <!-- End #tab2 -->        
 
       </div> <!-- End .content-box-content -->
 
       </div> <!-- End .content-box -->
-
-      <div class="content-box column-left">
-
-      <div class="content-box-header">
-
-      <h3>Content box left</h3>
-
-      </div> <!-- End .content-box-header -->
-
-      <div class="content-box-content">
-
-      <div class="tab-content default-tab">
-
-        <h4>Maecenas dignissim</h4>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo.
-        </p>
-        
-      </div> <!-- End #tab3 -->        
-
-      </div> <!-- End .content-box-content -->
-
-      </div> <!-- End .content-box -->
-
-      <div class="content-box column-right closed-box">
-
-      <div class="content-box-header"> <!-- Add the class "closed" to the Content box header to have it closed by default -->
-
-      <h3>Content box right</h3>
-
-      </div> <!-- End .content-box-header -->
-
-      <div class="content-box-content">
-
-      <div class="tab-content default-tab">
-
-        <h4>This box is closed by default</h4>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo.
-        </p>
-        
-      </div> <!-- End #tab3 -->        
-
-      </div> <!-- End .content-box-content -->
-
-      </div> <!-- End .content-box -->
+    
       <div class="clear"></div>
 
 
-      <!-- Start Notifications -->
-
-      <!--<div class="notification attention png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. 
-      </div>
-      </div>
-
-      <div class="notification information png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>
-
-      <div class="notification success png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>
-
-      <div class="notification error png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>-->
-
-      <!-- End Notifications -->
+    
 
       <?php require "footer.php";?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+	<meta name="keywords" content="HTML,CSS">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+      <script>
+      $(document).ready(function(){
+        $('#save').on('click', function(e){
+          e.preventDefault();
+          var name = $("#name").val();
+          var price = $("#price").val();
+          var path = $("#path").val();
+          var cid = $("#cid").val();
+          $.ajax({
+          url: "insert.php",
+          type : "POST",
+          data : {sname:name, sprice: price, spath:path, scid:cid},
+          success : function(data){
+            //alert(data);
+            //console.log(data);
+            if(data == 1){
+              alert("Successfully Added");  
+            } else {
+              alert("failed");
+            }
+
+          }
+        });/*.done(function (msg) {
+                header("Location: product.php");
+            }*/
+        });
+      });
+  </script>
+</body>
+</html>
+
+
