@@ -14,7 +14,7 @@
       </noscript>
 
       <!-- Page Head -->
-      <h2>Welcome John</h2>
+      <h2>Welcome Twinkle</h2>
       <p id="page-intro">What would you like to do?</p>
 
       <div class="clear"></div> <!-- End .clear -->
@@ -46,7 +46,7 @@
         </div>
         
         <?php
-        display();
+        require_once "display.php";
         ?>
 
       <div class="tab-content" id="tab2">

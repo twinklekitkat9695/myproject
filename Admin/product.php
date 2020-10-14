@@ -62,7 +62,7 @@
         </table>-->
         
     <?php
-        display();
+        require_once "display.php";
     ?>
           
         <!--  <tfoot>

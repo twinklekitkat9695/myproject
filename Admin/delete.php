@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Array file Doc Commentw
  * 
@@ -13,13 +14,12 @@
  /**
   * $products
   */
-$dbhost='localhost';
-$dbname="project";
-$dbusername="root";
-$dbpass="";
-$conn = new mysqli($dbhost, $dbusername, $dbpass, $dbname);
+    include "config.php";
+    $p_id=$_GET['id'];
+    require 'config.php';
+    $sql="DELETE FROM products WHERE pid={$p_id}";
+    $result=mysqli_query($conn, $sql) or die("Query Unsuccessful.");
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>      
+    header("Location:product.php");
+    mysqli_close($conn);
+?>
