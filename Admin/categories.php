@@ -48,20 +48,22 @@
         <?php
         require_once "display.php";
         ?>
-
+        </div> <!-- End #tab1 -->
       <div class="tab-content" id="tab2">
 
-        <form action="#" method="post">
+        <form action="" method="post">
           
           <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
             
             <p>
               <label>Category Name</label>
-                <input class="text-input small-input" type="text" id="small-input" name="small-input" /> <span class="input-notification success png_bg">Successful message</span> <!-- Classes for input-notification: success, error, information, attention -->
+                <input class="text-input small-input" type="text" id="small-input" name="input1" /> 
+                <span class="input-notification success png_bg">Successful message</span> 
+                <!-- Classes for input-notification: success, error, information, attention -->
                 <br /><small>A small description of the field</small>
             </p>
             <p>
-              <input class="button" type="submit" value="Submit" />
+              <input class="button" type="submit" value="Submit" name="submit"/>
             </p>
             
           </fieldset>
@@ -75,40 +77,28 @@
       </div> <!-- End .content-box-content -->
 
       </div> <!-- End .content-box -->
-    
+
+<?php
+if (isset($_POST['submit'])) {
+    $name=isset($_POST['input1']) ? $_POST['input1'] : '';
+    echo "<script>console.log(".$name.")</script>";
+    if ($name == "") {
+        echo '<script>$("#error-message").html("All fields are required.").slideDown();
+        $("#success-message").slideUp()</script>';
+    } else {
+        $sql="INSERT INTO `categories`(`cname`) VALUES ('".$name."')";
+        if ($conn-> query($sql) == true) {
+      
+            echo "<script> alert('New record created successfully');</script>";
+        } else {
+            echo "Error : " .$sql. "<br>" .$conn -> error;
+        }
+
+          $conn -> close();
+    }
+}
+?>
+
       <div class="clear"></div>
 
-
-      <!-- Start Notifications -->
-
-      <!--<div class="notification attention png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. 
-      </div>
-      </div>
-
-      <div class="notification information png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>
-
-      <div class="notification success png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>
-
-      <div class="notification error png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>-->
-
-      <!-- End Notifications -->
-
-      <?php require "footer.php";?>
+      <?php require "footer.php"?>

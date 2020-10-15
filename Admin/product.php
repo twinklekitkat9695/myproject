@@ -2,7 +2,6 @@
       <?php include("sidebar.php");?>
       <?php include("config.php");?>
 
-
       <div id="main-content"> <!-- Main Content Section with everything -->
 
       <noscript> <!-- Show a notification if the user has disabled javascript -->
@@ -14,7 +13,7 @@
       </noscript>
 
       <!-- Page Head -->
-      <h2>Welcome Twinkle</h2>
+      <h2>Welcome Admin</h2>
       <p id="page-intro">What would you like to do?</p>
 
       <div class="clear"></div> <!-- End .clear -->
@@ -23,10 +22,10 @@
 
       <div class="content-box-header">
 
-      <h3>Content box</h3>
+      <h3>Product Details</h3>
 
       <ul class="content-box-tabs">
-        <li><a href="product.php" class="default-tab">Manage</a></li> <!-- href must be unique and match the id of target div -->
+        <li><a href="#tab1" class="default-tab">Manage</a></li> <!-- href must be unique and match the id of target div -->
         <li><a href="#tab2">Add Products</a></li>
       </ul>
 
@@ -44,170 +43,11 @@
             This is a Content Box. You can put whatever you want in it. By the way, you can close this notification with the top-right cross.
           </div>
         </div>
-        
-        <!--<table id="table-data">
-          
-          <thead>
-            <tr>
-                <th><input class="check-all" type="checkbox" /></th>
-                <th>Product Id</th>
-                <th>Product Name</th>
-                <th>Product Price</th>
-                <th>Product Category</th>
-                <th>Action</th>
-            </tr>
-            <tr><td id="table-data"></td></tr>
-            
-          </thead>
-        </table>-->
-        
-    <?php
-        require_once "display.php";
-    ?>
-          
-        <!--  <tfoot>
-            <tr>
-              <td colspan="6">
-                <div class="bulk-actions align-left">
-                  <select name="dropdown">
-                    <option value="option1">Choose an action...</option>
-                    <option value="option2">Edit</option>
-                    <option value="option3">Delete</option>
-                  </select>
-                  <a class="button" href="#">Apply to selected</a>
-                </div>
-                
-                <div class="pagination">
-                  <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-                  <a href="#" class="number" title="1">1</a>
-                  <a href="#" class="number" title="2">2</a>
-                  <a href="#" class="number current" title="3">3</a>
-                  <a href="#" class="number" title="4">4</a>
-                  <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
-                </div> <!- End .pagination 
-                <div class="clear"></div>
-              </td>
-            </tr>
-          </tfoot>
-          
-          <tbody>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-            
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Lorem ipsum dolor</td>
-              <td><a href="#" title="title">Sit amet</a></td>
-              <td>Consectetur adipiscing</td>
-              <td>Donec tortor diam</td>
-              <td>
-                <!- Icons 
-                  <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-                  <a href="#" title="Delete"><img src=ages/icons/cross.png" alt="Delete" /></a> 
-                  <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-              </td>
-            </tr>
-          </tbody>"resources/im
-          
-        </table>*/
-        
-      </div>-- End #tab1 -->
-
+          <?php
+              require_once "display.php";
+          ?>
+       
+      </div> <!-- End #tab1 -->
       <div class="tab-content" id="tab2">
 
         <form method="post">
@@ -229,14 +69,57 @@
                 <label>Image Path</label>
                 <input class="text-input large-input" type="text" id="path" name="input3" />
             </p>
-              <label>Choose Category</label>              
+               <label>Choose Category</label>              
                   <select class="small-input" id='cid' name="input4">
-                      <option class="one" value="Men">Men</option>
-                      <option class="one" value="Women">Women</option>
-                      <option class="one" value="Kids">Kids</option>
-                      <option class="one" value="Electronics">Electronics</option>
-                      <option class="one" value="Sports">Sports</option>
-                  </select> 
+                      <option class="one" value="">Select Category</option>
+                      <?php 
+                        $sql1="SELECT * FROM categories";
+                        $result1=mysqli_query($conn, $sql1) or die("Query Unsuccessful.");
+                        while ($row1=mysqli_fetch_assoc($result1)) {
+                            ?>
+                          <option value="<?php echo $row1['cname'];?>">
+                            <?php echo $row1['cname']?></option>
+                            <?php 
+                        } ?>
+                    </select>
+
+                    <p>
+              <label>Select Product Tags</label>
+              <?php 
+                  $sql2="SELECT * FROM tags";
+                  $result2=mysqli_query($conn, $sql2) or die("Query Unsuccessful.");
+                  while ($row2=mysqli_fetch_assoc($result2)) {
+                            ?>
+              <input type="checkbox" id="check" name="input1[]" value="<?php echo $row2['tname'] ?>"/> <?php echo $row2['tname'];}?>
+              
+              <p>
+              <label>Textarea with WYSIWYG</label>
+              <textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
+            </p>
+              
+              <!-- <input type="checkbox" name="input1[]" value="Ecommerce"/> Ecommerce
+              <input type="checkbox" name="input1[]" value="Shop"/> Shop
+              <input type="checkbox" name="input1[]" value="Handbag"/> Handbag
+              <input type="checkbox" name="input1[]" value="Laptop"/> Laptop
+              <input type="checkbox" name="input1[]" value="Headphone"/> Headphone -->
+              
+            </p>
+                      <!--  -->
+                 <!--  <select name="class">
+                <option value="" selected disabled>Select Class</option>
+                <?php 
+                    /* $conn=mysqli_connect("localhost", "root", "", "crud") or 
+                    die("Connection Failed");
+            
+                    $sql="SELECT * FROM studentclass";
+                    $result=mysqli_query($conn, $sql) or die("Query Unsuccessful.");
+                while ($row=mysqli_fetch_assoc($result)) {
+                    ?>
+                <option value="<?php echo $row['cid'];?>">
+                    <?php echo $row['cname']?></option>
+                    <?php 
+                }  */?>
+            </select> -->
             </p>
             
             <p>
@@ -293,34 +176,32 @@
     
       <div class="clear"></div>
 
-
     
 
       <?php require "footer.php";?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Products</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <meta charset="utf-8">
-	<meta name="keywords" content="HTML,CSS">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-      <script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+  <script>
       $(document).ready(function(){
         $('#save').on('click', function(e){
           e.preventDefault();
           var name = $("#name").val();
           var price = $("#price").val();
           var path = $("#path").val();
-          var cid = $("#cid").val();
+          var cid = $('#cid').val();
+          /* var check=$('#check').val(); */
+          var array=[];
+          $("input:checked").each(function(){
+              array.push($(this).val());
+          });
+          var text=$('#textarea').val();
+          alert(array);
           $.ajax({
           url: "insert.php",
           type : "POST",
-          data : {sname:name, sprice: price, spath:path, scid:cid},
+          data : {sname:name, sprice: price, spath:path, scid:cid, scheck:array, stext:text},
           success : function(data){
-            //alert(data);
+            alert(data);
             //console.log(data);
             if(data == 1){
               alert("Successfully Added");  
@@ -335,7 +216,5 @@
         });
       });
   </script>
-</body>
-</html>
 
 
