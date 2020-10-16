@@ -83,45 +83,23 @@
                         } ?>
                     </select>
 
-                    <p>
-              <label>Select Product Tags</label>
+          <p>
+            <label>Select Product Tags</label>
               <?php 
-                  $sql2="SELECT * FROM tags";
-                  $result2=mysqli_query($conn, $sql2) or die("Query Unsuccessful.");
-                  while ($row2=mysqli_fetch_assoc($result2)) {
-                            ?>
-              <input type="checkbox" id="check" name="input1[]" value="<?php echo $row2['tname'] ?>"/> <?php echo $row2['tname'];}?>
+                $sql2="SELECT * FROM tags";
+                $result2=mysqli_query($conn, $sql2) or die("Query Unsuccessful.");
+
+                while ($row2=mysqli_fetch_assoc($result2)) {
+                    ?>
+                    <input type="checkbox" id="check" name="input1[]" value="<?php echo $row2['tname'] ?>"/> 
+                    <?php echo $row2['tname'];
+                }?>
+          </p>
               
-              <p>
-              <label>Textarea with WYSIWYG</label>
+            <p>
+              <label>Product Description</label>
               <textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
             </p>
-              
-              <!-- <input type="checkbox" name="input1[]" value="Ecommerce"/> Ecommerce
-              <input type="checkbox" name="input1[]" value="Shop"/> Shop
-              <input type="checkbox" name="input1[]" value="Handbag"/> Handbag
-              <input type="checkbox" name="input1[]" value="Laptop"/> Laptop
-              <input type="checkbox" name="input1[]" value="Headphone"/> Headphone -->
-              
-            </p>
-                      <!--  -->
-                 <!--  <select name="class">
-                <option value="" selected disabled>Select Class</option>
-                <?php 
-                    /* $conn=mysqli_connect("localhost", "root", "", "crud") or 
-                    die("Connection Failed");
-            
-                    $sql="SELECT * FROM studentclass";
-                    $result=mysqli_query($conn, $sql) or die("Query Unsuccessful.");
-                while ($row=mysqli_fetch_assoc($result)) {
-                    ?>
-                <option value="<?php echo $row['cid'];?>">
-                    <?php echo $row['cname']?></option>
-                    <?php 
-                }  */?>
-            </select> -->
-            </p>
-            
             <p>
                 <input type="submit" name="submit" value="Submit" id="save"/>
             </p>
@@ -132,40 +110,7 @@
           
         </form>
         <?php
-       /* if (isset($_POST['submit'])) {
-            $name=isset($_POST['input1']) ? $_POST['input1'] : '';
-            $price=isset($_POST['input2']) ? $_POST['input2'] : '';
-            $path=isset($_POST['input3']) ? $_POST['input3'] : '';
-            $cid=isset($_POST['input4']) ? $_POST['input4'] : '';
-            if ($name == "" || $price == "" || $path =="" || $cid=="") {
-                echo '<script>$("#error-message").html("All fields are required.").slideDown();
-                $("#success-message").slideUp()</script>';
-            } else {
-              $sql="INSERT INTO products (`name`, `price`, `path`, `cid`)
-              VALUES ('".$name."', '".$price."', '".$path."',(SELECT cid FROM categories 
-              WHERE cname = '".$cid."'))";*/
-                /*$sql="INSERT INTO products (`name`, `price`, `path`, `cid`)
-                VALUES ('".$name."', '".$price."', '".$path."','".$cid."')";*/
-                /*if ($conn-> query($sql) == true) {
-                    echo "success";
-                } else {
-                    echo "Failed";*/
-                    /*$sql="INSERT INTO products (`name`, `price`, `path`, `cid`) 
-                    select $name,
-                          $price,
-                          $path,
-                          cid
-                      from categories where cname = $cid";*/
-                /*}
-                if ($conn-> query($sql) == true) {
-              
-                    echo "<script> alert('New record created successfully');</script>";
-                } else {
-                    echo "Error : " .$sql. "<br>" .$conn -> error;
-                }
-      
-                  $conn -> close();
-            }*/
+    
         ?>
         
       </div> <!-- End #tab2 -->        
@@ -178,7 +123,7 @@
 
     
 
-      <?php require "footer.php";?>
+<?php require "footer.php";?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
   <script>
@@ -201,7 +146,7 @@
           type : "POST",
           data : {sname:name, sprice: price, spath:path, scid:cid, scheck:array, stext:text},
           success : function(data){
-            alert(data);
+            //alert(data);
             //console.log(data);
             if(data == 1){
               alert("Successfully Added");  

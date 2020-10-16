@@ -55,13 +55,11 @@
           
           <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->            
             <p>
-              <label>Select Product Tags</label>
-              <input type="checkbox" name="input1[]" value="Fashion"/> Fashion
-              <input type="checkbox" name="input1[]" value="Ecommerce"/> Ecommerce
-              <input type="checkbox" name="input1[]" value="Shop"/> Shop
-              <input type="checkbox" name="input1[]" value="Handbag"/> Handbag
-              <input type="checkbox" name="input1[]" value="Laptop"/> Laptop
-              <input type="checkbox" name="input1[]" value="Headphone"/> Headphone
+              <label>Enter Product Tags Name</label>
+              <input class="text-input small-input" type="text" id="small-input" name="input1" /> 
+                <span class="input-notification success png_bg">Successful message</span> 
+                <!-- Classes for input-notification: success, error, information, attention -->
+                <br /><small>A small description of the field</small>
             </p>
             <p>
               <input class="button" type="submit" value="Submit" name="submit"/>
@@ -82,15 +80,11 @@
       <?php
         if (isset($_POST['submit'])) {
             $name=($_POST['input1']);
-            $check="";
-            foreach ($name as $check1) {
-              $check .=$check1. ",";
-            }
-            if ($check == "") {
+            if ($name == "") {
                 echo '<script>$("#error-message").html("All fields are required.").slideDown();
                 $("#success-message").slideUp()</script>';
             } else {
-                $sql="INSERT INTO `tags`(`tname`) VALUES ('$check')";
+                $sql="INSERT INTO `tags`(`tname`) VALUES ('$name')";
                 if ($conn-> query($sql) == true) {
               
                     echo "<script> alert('New record created successfully');</script>";

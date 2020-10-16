@@ -14,7 +14,7 @@
                 <th>Product Id</th>
                 <th>Product Name</th>
                 <th>Product Price</th>
-                <th>Product Image</th>
+                <th width="100px" height="50px">Product Image</th>
                 <th>Product Category</th>
                 <th width="100px">action</th>
               </tr>
@@ -49,7 +49,7 @@
                 <td align='center'>{$row["pid"]}</td>
                 <td>{$row["name"]}</td>
                 <td>{$row["price"]}</td>
-                <td><img src='".$row["path"]."'></td>
+                <td><img src='".$row["path"]."' style='width:50px; height:50px'></td>
                 <td>{$row["cname"]}</td>        
                 <td>
                 <button class='edit' name='edtbtn' data-eid=".$row['pid']."'><img src='resources/images/icons/pencil.png' alt='Edit'/></button>
