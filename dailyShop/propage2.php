@@ -31,8 +31,8 @@
                 <form action="" class="aa-sort-form">
                   <label for="">Sort by</label>
                   <select name="">
-                    <option value="1" selected="Default">Default</option>
-                    <option value="2">Name</option>
+                    <option id="opt1" value="1" selected="Default">Default</option>
+                    <option id="opt2" value="2">Name</option>
                     <option value="3">Price</option>
                     <option value="4">Date</option>
                   </select>
@@ -55,7 +55,7 @@
               <ul class="aa-product-catg">
             
                 <?php
-                    $sql="SELECT * FROM products LIMIT 10";
+                    $sql="SELECT * FROM products LIMIT 10, 2";
               
                     $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
                       if (mysqli_num_rows($result) > 0 ) {
@@ -82,8 +82,7 @@
                   
                   </li>
                       <?php }} ?>
-            
-                      
+                
                       
               </ul> 
               <!-- quick view modal// -->      
@@ -113,15 +112,8 @@
                           
               }); 
                   /* }); */
-                  <?php
-                    $sql4="SELECT * FROM products LIMIT 10";
-              
-                    $result4 = mysqli_query($conn, $sql4) or die("SQL Query Failed.");
-                    if (mysqli_num_rows($result4) > 0 ) {
-                        while ($row4 = mysqli_fetch_assoc($result4)) {
-                            //print_r($row);
-                            ?>
                 </script>         
+              
              <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
              
                <div class="modal-dialog">
@@ -196,7 +188,7 @@
                             </div>
                             <div class="aa-prod-view-bottom">
                               <a href="cart.php?Id=<?php echo $row4["pid"] ?>" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                              <a href="product-detail.php?Id=<?php echo $row4["pid"] ?>" class="aa-add-to-cart-btn">View Details</a>
+                              <a href="#" class="aa-add-to-cart-btn">View Details</a>
                             </div>
                           </div>
                         </div>
@@ -206,7 +198,7 @@
                 </div>
               </div>
               <!-- / quick view modal --> 
-                <?php }} ?>    
+                    
             </div>
             <div class="aa-product-catg-pagination">
               <nav>
@@ -243,7 +235,7 @@
 
                 while ($row2=mysqli_fetch_assoc($result2)) {
                     ?>
-                    <li><a class ="cat" href="catdisplay.php" data-id="<?php echo $row2['cid'] ?>" ><?php echo $row2['cname'] ?></a></li> 
+                    <li><a href="#"><?php echo $row2['cname'] ?></a></li> 
                 <?php } ?>
               </ul>
             </div>
@@ -358,9 +350,6 @@
     </div>
   </section>
   <!-- / product category -->
-  <script>
-
-  </script>
 
 
   <?php require_once 'footer.php' ?>

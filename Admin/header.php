@@ -6,8 +6,10 @@
 <title>Simpla Admin</title>
 <link rel="stylesheet" href="resources/css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="resources/css/invalid.css" type="text/css" media="screen" />	
+<link rel="stylesheet" href="resources/css/invalid.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="resources/css/update.css" type="text/css" media="screen" />	
 <script type="text/javascript" src="resources/scripts/jquery-1.3.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="resources/scripts/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="resources/scripts/facebox.js"></script>
 <script type="text/javascript" src="resources/scripts/jquery.wysiwyg.js"></script>

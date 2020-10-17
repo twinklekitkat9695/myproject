@@ -1,4 +1,6 @@
+<?php session_start(); ?>
 <?php require_once 'header.php' ?>
+<?php require_once 'config.php' ?>
 
   <!-- / menu -->  
  
@@ -40,30 +42,54 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$250</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$250</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-2.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$150</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$150</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-3.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$50</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$50</td>
-                      </tr>
+                    <?php
+
+                    if (empty($_SESSION['cart'])) {       
+                        global $usercart ;
+                        $usercart = array();
+                    } else {
+                        $usercart = $_SESSION['cart'];
+                    }
+                    if (isset($_GET)) {
+                        $usercart[] = $_GET["Id"];
+                        $_SESSION['cart']=$usercart;
+                    }
+                    $total=array();
+
+                    foreach ($_SESSION['cart'] as $key => $value) {
+                        $sql="SELECT * FROM products WHERE `pid`= '{$value}'";
+              
+                         $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
+                      
+                        if (mysqli_num_rows($result) > 0 ) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $total[]=$row["price"];
+                                ?>
+
+                                <tr>
+                                    <td><a class="remove" href="?Id=<?php echo $key ?>"><fa class="fa fa-close"></fa></a></td>
+                                    <td><a href="#"><img src="<?php echo $row["path"] ?>" alt="img"></a></td>
+                                    <td><a class="aa-cart-title" href="#"><?php echo $row["name"] ?></a></td>
+                                    <td>$<?php echo $row["price"] ?></td>
+                                    <td><input class="aa-cart-quantity" type="number" value="1"></td>
+                                    <td>$<?php echo $row["price"] ?></td>
+                                </tr>
+                                    <?php
+                        
+                        
+
+                            }
+                        }  
+                         
+                        //$sum=array_sum($total);
+                    }           
+                      $sum=array_sum($total);    
+                      if (isset($_GET['Id'])) {
+                        $id=$_GET['Id'];
+                        unset($_SESSION['cart'][$id]);
+                     }
+                          ?>
+                                
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
                           <div class="aa-cart-coupon">
@@ -82,13 +108,13 @@
                <h4>Cart Totals</h4>
                <table class="aa-totals-table">
                  <tbody>
-                   <tr>
+                   <!-- <tr>
                      <th>Subtotal</th>
-                     <td>$450</td>
+                     <td></td>
                    </tr>
-                   <tr>
+                   <tr> -->
                      <th>Total</th>
-                     <td>$450</td>
+                     <td><?php echo $sum ?></td>
                    </tr>
                  </tbody>
                </table>
@@ -101,6 +127,8 @@
    </div>
  </section>
  <!-- / Cart view section -->
-
+<?php
+//session_unset();
+?>
 
 <?php require_once 'footer.php' ?>

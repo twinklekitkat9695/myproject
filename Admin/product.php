@@ -43,9 +43,17 @@
             This is a Content Box. You can put whatever you want in it. By the way, you can close this notification with the top-right cross.
           </div>
         </div>
-          <?php
-              require_once "display.php";
-          ?>
+        <div id="#modal">
+            <div id="modal-form">
+              <h2>Edit Form</h2>
+            <div id="close-btn">X</div>
+            <table cellpadding="10px" width="100%">
+            </table>
+         </div>
+        </div>
+        <div id="show">
+          
+        </div>
        
       </div> <!-- End #tab1 -->
       <div class="tab-content" id="tab2">
@@ -125,9 +133,27 @@
 
 <?php require "footer.php";?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<!-- <div id="#modal">
+  <div id="modal-form">
+      <h2>Edit Form</h2>
+      <div id="close-btn">X</div>
+      <table cellpadding="10px" width="100%">
+      </table>
+  </div>
+</div> -->
+
   <script>
       $(document).ready(function(){
+        function loadTable(){
+          $.ajax({
+            url : "display.php",
+            type : "POST",
+            success : function(data){
+              $("#show").html(data);
+              }
+            });
+        }
+        loadTable(); 
         $('#save').on('click', function(e){
           e.preventDefault();
           var name = $("#name").val();
@@ -142,24 +168,101 @@
           var text=$('#textarea').val();
           alert(array);
           $.ajax({
-          url: "insert.php",
-          type : "POST",
-          data : {sname:name, sprice: price, spath:path, scid:cid, scheck:array, stext:text},
-          success : function(data){
+            url: "insert.php",
+            type : "POST",
+            data : {sname:name, sprice: price, spath:path, scid:cid, scheck:array, stext:text},
+            success : function(data){
             //alert(data);
             //console.log(data);
             if(data == 1){
+              loadTable();
               alert("Successfully Added");  
             } else {
               alert("failed");
             }
-
-          }
-        });/*.done(function (msg) {
-                header("Location: product.php");
-            }*/
+            }
+          });
         });
+        loadTable(); 
+        $(document).on("click",".delete", function(){
+                //e.preventDefault();
+                var name = $(this).data('id');
+                //var element=this;
+                //alert(name);
+                if(confirm("Are you sure?")) {
+                    $.ajax({
+                    url: "delete.php",
+                    type : "POST",
+                    data : {sid:name},
+                    success : function(data){
+                    //alert(data);
+                    //console.log(data);
+                    if(data == 1){
+                    //$(element).closest("tr").fadeOut();
+                    alert("Successfully Deleted");  
+                    } else {
+                    alert("failed");
+                    }
+                }
+                });
+                }
+                });
+                //Show Modal Box
+                $(document).on("click",".edit", function(){
+                  $("#show").toggle();
+                $("#modal").show();
+                //$("#show").hide();
+
+                $("#close-btn").show();
+                $("h2").show();
+                var eid = $(this).data("eid");
+                    //alert(eid);
+                $.ajax({
+                    url: "updateform.php",
+                    type: "POST",
+                    data: {id: eid},
+                    success: function(data) {
+                        //alert(data);
+                    $("#modal-form table").html(data);
+                    }
+                })
+                });
+                //Hide Modal Box
+                $("#close-btn").click(function(){
+                    $("#modal-form").hide();
+                });
+                //Save Update Form
+                $(document).on("click","#edit-submit", function(){
+                  //$("#modal-form").toggle();
+                  var id = $("#editid").val();
+                  var name = $("#editname").val();
+                  var price = $("#editprice").val();
+                  var path = $("#editpath").val();
+                  var category = $("#editcategory").val();
+                  //alert(category);
+                  //alert(id);
+                  $.ajax({
+                  url: "update.php",
+                  type : "POST",
+                  data : {id: id, name: name, price: price, path: path, category:category},
+                  success: function(data) {
+                    if(data == 1){
+                      $("#modal-form").hide();
+                      //$("#show").show();
+                      //loadTable();
+                        //alert("successfully updated");
+                        //$("#modal").hide();
+                    }
+                  }
+                });
+                //$("#show").show();
+                loadTable();
+                $("#show").show();
+        });
+
       });
   </script>
+</body>
+</html>
 
 
