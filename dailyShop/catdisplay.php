@@ -1,5 +1,22 @@
 <?php require_once 'header.php'; ?>
 <?php require_once 'config.php'; ?>
+<script>
+    $(document).ready(function(){
+        $(document).on("click",".cat", function(){
+            var name = $(this).data('id');
+            alert(name);
+            $.ajax({
+                    url: "cartload.php",
+                    type: "POST",
+                    data: {id: name},
+                    success: function(data) {
+                        //alert(data);
+                    $("#show").html(data);
+                    }
+        });
+    });
+});
+  </script>
 
   <!-- / menu -->  
  
@@ -327,10 +344,11 @@
     </div>
   </section>
   <!-- / product category -->
-  <script>
+ <!--  <script>
     $(document).ready(function(){
         $(document).on("click",".cat", function(){
             var name = $(this).data('id');
+            alert(name);
             $.ajax({
                     url: "cartload.php",
                     type: "POST",
@@ -342,7 +360,7 @@
         });
     });
 });
-  </script>
+  </script> -->
 
 
   <?php require_once 'footer.php' ?>

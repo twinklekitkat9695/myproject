@@ -52,6 +52,8 @@
               </div>
             </div>
             <div class="aa-product-catg-body">
+            <div id="show">
+            <div id="hide">
               <ul class="aa-product-catg">
             
                 <?php
@@ -86,6 +88,8 @@
                       
                       
               </ul> 
+              </div>
+              </div>
               <!-- quick view modal// -->      
               <script>
                   $(document).ready(function(){
@@ -243,8 +247,10 @@
 
                 while ($row2=mysqli_fetch_assoc($result2)) {
                     ?>
-                    <li><a class ="cat" href="catdisplay.php" data-id="<?php echo $row2['cid'] ?>" ><?php echo $row2['cname'] ?></a></li> 
+                    <li><a class ="cat" href="" data-id="<?php echo $row2['cname'] ?>" ><?php echo $row2['cname'] ?></a></li> 
+                    
                 <?php } ?>
+                <li><a href="" id="cat1">Show All</a></li>
               </ul>
             </div>
             <!-- single sidebar -->
@@ -359,6 +365,28 @@
   </section>
   <!-- / product category -->
   <script>
+  $(document).ready(function(){
+        $(document).on("click",".cat", function(e){
+          e.preventDefault();
+            var name = $(this).data('id');
+            //alert(name);
+            $.ajax({
+                    url: "cartload.php",
+                    type: "POST",
+                    data: {id: name},
+                    success: function(data) {
+                        //alert(data);
+                    $("#hide").hide();
+                    $("#show").html(data);
+                    }
+        });
+        $(document).on("click",".cat", function(r){
+          e.preventDefault();
+            $("#hide").shows();
+            $("#show").hide();
+        });
+    });
+});
 
   </script>
 
