@@ -1,3 +1,1 @@
-Shop-Website
-
-E-Commerce website (In development phase)
+E-Commerce website (My project is in development phase)
