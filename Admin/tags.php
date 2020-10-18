@@ -2,7 +2,6 @@
       <?php include("sidebar.php");?>
       <?php include("config.php");?>
 
-
       <div id="main-content"> <!-- Main Content Section with everything -->
 
       <noscript> <!-- Show a notification if the user has disabled javascript -->
@@ -23,7 +22,7 @@
 
       <div class="content-box-header">
 
-      <h3>Content box</h3>
+      <h3>Product Details</h3>
 
       <ul class="content-box-tabs">
         <li><a href="#tab1" class="default-tab">Manage</a></li> <!-- href must be unique and match the id of target div -->
@@ -44,32 +43,46 @@
             This is a Content Box. You can put whatever you want in it. By the way, you can close this notification with the top-right cross.
           </div>
         </div>
-        
-        <?php require_once "display.php"; ?>
-        
+        <div id="#modal">
+            <div id="modal-form">
+              <h2>Edit Form</h2>
+            <div id="close-btn">X</div>
+            <table cellpadding="10px" width="100%">
+            </table>
+         </div>
+        </div>
+        <div id="show">
+          
+        </div>
+       
       </div> <!-- End #tab1 -->
-
       <div class="tab-content" id="tab2">
 
-        <form action="#" method="post">
+        <form method="post">
           
-          <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->            
+        <form action="" method="post">
+          
+          <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
+            
             <p>
-              <label>Enter Product Tags Name</label>
-              <input class="text-input small-input" type="text" id="small-input" name="input1" /> 
+              <label>Enter Product Tag Name</label>
+                <input class="text-input small-input" type="text" id="name" name="name" /> 
                 <span class="input-notification success png_bg">Successful message</span> 
                 <!-- Classes for input-notification: success, error, information, attention -->
                 <br /><small>A small description of the field</small>
             </p>
             <p>
-              <input class="button" type="submit" value="Submit" name="submit"/>
+              <input class="button" type="submit" id ="save" value="Submit" name="save"/>
             </p>
-
+            
           </fieldset>
           
           <div class="clear"></div><!-- End .clear -->
           
         </form>
+        <?php
+    
+        ?>
         
       </div> <!-- End #tab2 -->        
 
@@ -77,58 +90,116 @@
 
       </div> <!-- End .content-box -->
     
-      <?php
-        if (isset($_POST['submit'])) {
-            $name=($_POST['input1']);
-            if ($name == "") {
-                echo '<script>$("#error-message").html("All fields are required.").slideDown();
-                $("#success-message").slideUp()</script>';
-            } else {
-                $sql="INSERT INTO `tags`(`tname`) VALUES ('$name')";
-                if ($conn-> query($sql) == true) {
-              
-                    echo "<script> alert('New record created successfully');</script>";
-                } else {
-                    echo "Error : " .$sql. "<br>" .$conn -> error;
-                }
-
-                  $conn -> close();
-            }
-        }
-        ?>
       <div class="clear"></div>
 
+    
 
-      <!-- Start Notifications -->
+<?php require "footer.php";?>
 
-      <!--<div class="notification attention png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. 
-      </div>
-      </div>
+  <script>
+      $(document).ready(function(){
+        function loadTable(){
+          $.ajax({
+            url : "displaytag.php",
+            type : "POST",
+            success : function(data){
+              $("#show").html(data);
+              }
+            });
+        }
+        loadTable(); 
+        $('#save').on('click', function(e){
+          e.preventDefault();
+          var name = $("#name").val();
+          $.ajax({
+            url: "inserttag.php",
+            type : "POST",
+            data : {sname:name},
+            success : function(data){
+            alert(data);
+            //console.log(data);
+            if(data == 1){
+              loadTable();
+              alert("Successfully Added");  
+            } else {
+              alert("failed");
+            }
+            }
+          });
+        });
+        loadTable(); 
+        $(document).on("click",".delete", function(){
+                //e.preventDefault();
+                var name = $(this).data('id');
+                //var element=this;
+                //alert(name);
+                if(confirm("Are you sure?")) {
+                    $.ajax({
+                    url: "deletetag.php",
+                    type : "POST",
+                    data : {sid:name},
+                    success : function(data){
+                      loadTable();
+                    //alert(data);
+                    //console.log(data);
+                    if(data == 1){
+                    //$(element).closest("tr").fadeOut();
+                    alert("Successfully Deleted");  
+                    } else {
+                    alert("failed");
+                    }
+                }
+                });
+                }
+                });
+                //Show Modal Box
+                $(document).on("click",".edit", function(){
+                  $("#show").toggle();
+                $("#modal").show();
+                //$("#show").hide();
 
-      <div class="notification information png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>
+                $("#close-btn").show();
+                $("h2").show();
+                var eid = $(this).data("eid");
+                    //alert(eid);
+                $.ajax({
+                    url: "updateformtag.php",
+                    type: "POST",
+                    data: {id: eid},
+                    success: function(data) {
+                        //alert(data);
+                    $("#modal-form table").html(data);
+                    }
+                })
+                });
+                //Hide Modal Box
+                $("#close-btn").click(function(){
+                    $("#modal-form").hide();
+                });
+                //Save Update Form
+                $(document).on("click","#edit-submit", function(e){
+                  e.preventDefault();
+                  //$("#modal-form").toggle();
+                  var id = $("#editid").val();
+                  var name = $("#editname").val();
+                  $.ajax({
+                  url: "updatetag.php",
+                  type : "POST",
+                  data : {id: id, name: name},
+                  success: function(data) {
+                    if(data == 1){
+                      $("#modal-form").hide();
+                      $("#show").show();
+                      //loadTable();
+                        alert("successfully updated");
+                        //$("#modal").hide();
+                    }
+                  }
+                });
+        });
+      });
+  </script>
+</body>
+</html>
 
-      <div class="notification success png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>
 
-      <div class="notification error png_bg">
-      <a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div>
-      Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-      </div>
-      </div>-->
-
-      <!-- End Notifications -->
-
-      <?php require "footer.php";?>
