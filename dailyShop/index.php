@@ -739,7 +739,7 @@
                            <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
                         </li>                        
                       </ul>
-                      <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                      <a class="aa-browse-btn" href="product.php">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                     <!-- / electronic product category -->
                   </div>
@@ -1005,7 +1005,7 @@
                       <span class="aa-badge aa-sale" href="#">SALE!</span>
                     </li>                                                                                   
                   </ul>
-                  <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                  <a class="aa-browse-btn" href="product.php">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / popular product category -->
                 

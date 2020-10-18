@@ -33,8 +33,7 @@
                       <?php 
                         }
                       }
-                    }
-                      else{
+                    } else {
                         echo "Error : " .$sql. "<br>" .$conn -> error;
                       }
                      ?>

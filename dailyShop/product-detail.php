@@ -24,7 +24,7 @@
   <!-- product category -->
     <?php 
 
-    $pd = $_GET["Id"];
+    $pd = $_GET["pId"];
 
     $sql = "SELECT * FROM `products` WHERE `pid`='{$pd}' ";
     $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
