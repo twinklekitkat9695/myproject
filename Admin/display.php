@@ -2,8 +2,22 @@
     require_once "config.php";
     //$conn = mysqli_connect("localhost", "root", "", "project") or die("Connection Failed");
     // $sql = "SELECT * FROM products";
+    $result_per_page =10;
+    $sq="SELECT * FROM products";
+  
+    $res = mysqli_query($conn, $sq) or die("SQL Query Failed.");
+    $number_of_results =mysqli_num_rows($res);
+    $number_of_pages =ceil($number_of_results / $result_per_page);
+    //$page=$_GET['page'];
+    if (isset($_GET['page'])) {
+        $page=$_GET['page'];;
+    } else {
+        $page=1;
+    } 
+    $this_page_first_result = ($page-1) * $result_per_page;
+    //$sql="SELECT * FROM `products` ORDER BY `pid` DESC LIMIT {$this_page_first_result}, {$result_per_page}";
     $sql="SELECT * FROM products JOIN categories WHERE products.cid= 
-        categories.cid";
+        categories.cid LIMIT {$this_page_first_result}, {$result_per_page}";
     $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
     $output = "";
     if (mysqli_num_rows($result) > 0 ) {
@@ -31,13 +45,17 @@
                 </div>
                 
                 <div class="pagination">
-                  <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-                  <a href="#" class="number" title="1">1</a>
-                  <a href="#" class="number" title="2">2</a>
-                  <a href="#" class="number current" title="3">3</a>
-                  <a href="#" class="number" title="4">4</a>
-                  <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
-                </div> <!- End .pagination 
+                  <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>';
+                  for ($i=1; $i<=$number_of_pages; $i++) {
+                      if ($i==$page) {
+                          $active="active";
+                      } else {
+                          $active ="";
+                      }
+      $output.=  '<a class="number" title="1" href="display.php?page='.$i.'">'. $i.'</a>';
+                    }
+                    $output.=  '<a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
+                </div> 
                 <div class="clear"></div>
               </td>
             </tr>
@@ -65,8 +83,8 @@
         //mysqli_close($conn);
 
         echo $output;
-    } else {
-        echo "<h2>No Record Found.</h2>";
-    }
+      } else {
+          echo "<h2>No Record Found.</h2>";
+      }
 
 ?>

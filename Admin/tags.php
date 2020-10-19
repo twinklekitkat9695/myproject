@@ -26,7 +26,7 @@
 
       <ul class="content-box-tabs">
         <li><a href="#tab1" class="default-tab">Manage</a></li> <!-- href must be unique and match the id of target div -->
-        <li><a href="#tab2">Add Products</a></li>
+        <li><a href="#tab2">Add Tags</a></li>
       </ul>
 
       <div class="clear"></div>

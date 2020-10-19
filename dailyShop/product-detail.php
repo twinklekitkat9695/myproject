@@ -43,19 +43,19 @@
                         <div class="aa-product-view-slider">                                
                             <div id="demo-1" class="simpleLens-gallery-container">
                             <div class="simpleLens-container">
-                                <div class="simpleLens-big-image-container"><a data-lens-image="<?php echo $row["path"] ?>" class="simpleLens-lens-image"><img src="<?php echo $row["image"] ?>" class="simpleLens-big-image"></a></div>
+                                <div class="simpleLens-big-image-container"><a data-lens-image="<?php echo $row["path"] ?>" class="simpleLens-lens-image"><img src="<?php echo $row["path"] ?>" class="simpleLens-big-image"></a></div>
                             </div>
-                            <div class="simpleLens-thumbnails-container">
+                            <!-- <div class="simpleLens-thumbnails-container">
                                 <a data-big-image="img/view-slider/medium/polo-shirt-1.png" data-lens-image="img/view-slider/large/polo-shirt-1.png" class="simpleLens-thumbnail-wrapper" href="#">
-                                    <img src="<?php echo $row["path"] ?>">
+                                    <img src="">
                                 </a>                                    
                                 <a data-big-image="img/view-slider/medium/polo-shirt-3.png" data-lens-image="img/view-slider/large/polo-shirt-3.png" class="simpleLens-thumbnail-wrapper" href="#">
-                                    <img src="<?php echo $row["path"] ?>">
+                                    <img src="">
                                 </a>
                                 <a data-big-image="img/view-slider/medium/polo-shirt-4.png" data-lens-image="img/view-slider/large/polo-shirt-4.png" class="simpleLens-thumbnail-wrapper" href="#">
-                                    <img src="<?php echo $row["path"] ?>">
+                                    <img src="">
                                 </a>
-                            </div>
+                            </div> -->
                             </div>
                         </div>
                         </div>

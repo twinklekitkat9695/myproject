@@ -329,7 +329,7 @@ $(document).ready(function(){
         var name = $(this).data('id');
         //alert(name);
         $.ajax({
-            url: "cartload.php",
+            url: "categorydisplay.php",
             type: "POST",
             data: {id: name},
             success: function(data) {
@@ -348,9 +348,9 @@ $(document).ready(function(){
       e.preventDefault();
       var name1 = $(this).data('id');
       //var n=unserialize(name1);
-      alert(name1);
+      //alert(name1);
       $.ajax({
-            url: "tagload.php",
+            url: "tagsdisplay.php",
             type: "POST",
             data: {id1: name1},
             success: function(data) {
