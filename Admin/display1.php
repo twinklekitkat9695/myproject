@@ -48,7 +48,7 @@
                     } else {
                         $active ="";
                     }
-    $output.=  '<a class="number" title="1" href="category.php?page='.$i.'">'. $i.'</a>';
+                    $output.=  '<a class="number" title="1" href="category.php?page='.$i.'">'. $i.'</a>';
                   }
                   $output.=  '<a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
               </div> 

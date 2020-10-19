@@ -4,7 +4,7 @@
                 $filename = basename($_SERVER['REQUEST_URI']);
                 $productmenu = array('product.php', 'categories.php', 'tags.php');
             ?>
-            <h1 id="sidebar-title"><a href="#">Simpla Admin</a></h1>
+            <h1 id="sidebar-title"><a href="#">Simple Admin</a></h1>
           
             <!-- Logo (221px wide) -->
             <a href="#"><img id="logo" src="resources/images/logo.png" alt="Simpla Admin logo" /></a>

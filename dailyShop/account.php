@@ -43,12 +43,20 @@
               <div class="col-md-6">
                 <div class="aa-myaccount-register">                 
                  <h4>Register</h4>
-                 <form action="" class="aa-login-form">
-                    <label for="">Username or Email address<span>*</span></label>
-                    <input type="text" placeholder="Username or email">
+                 <form action="" class="aa-login-form" method="post">
+                    <label for="">Username<span>*</span></label>
+                    <input type="text" placeholder="Username" id='name'>
                     <label for="">Password<span>*</span></label>
-                    <input type="password" placeholder="Password">
-                    <button type="submit" class="aa-browse-btn">Register</button>                    
+                    <input type="password" placeholder="password" id='password'>
+                    <label for="">Confirm Password<span>*</span></label>
+                    <input type="password" placeholder="Confirm password" id='repassword'>
+                    <label for="">Email<span>*</span></label>
+                    <input type="email" placeholder="Email" id='email'><br>
+                    <label for="">DOB<span>*</span></label>
+                    <input type="date" placeholder="Date of Birth" id='dob'><br>
+                    <label for="">Address<span>*</span></label>
+                    <input type="text" placeholder="Address" id='address'>
+                    <button type="submit" class="aa-browse-btn" id="register">Register</button>                    
                   </form>
                 </div>
               </div>
@@ -163,13 +171,14 @@
           <form class="aa-login-form" action="">
             <label for="">Username or Email address<span>*</span></label>
             <input type="text" placeholder="Username or email">
+            <input type="text" placeholder="Username or email">
             <label for="">Password<span>*</span></label>
             <input type="password" placeholder="Password">
             <button class="aa-browse-btn" type="submit">Login</button>
             <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
             <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
             <div class="aa-register-now">
-              Don't have an account?<a href="account.html">Register now!</a>
+              Don't have an account?<a href="account.php">Register now!</a>
             </div>
           </form>
         </div>                        
@@ -199,7 +208,33 @@
   <script type="text/javascript" src="js/nouislider.js"></script>
   <!-- Custom js -->
   <script src="js/custom.js"></script> 
-  
+  <script>
+      $(document).ready(function(){
+        $("#register").on("click",function(e){
+          e.preventDefault();
+         // e.preventDefault();
+          var name = $("#name").val();
+          var password = $("#password").val();
+          var repassword = $("#repassword").val();
+          var email = $("#email").val();
+          var dob = $("#dob").val();
+          var address = $("#address").val();
+          $.ajax({
+              url: "userRegistration.php",
+              type : "POST",
+              data : {name:name, password: password, repassword: repassword, email: email, dob: dob, address: address},
+              success : function(data){
+                //alert(data);
+                if (data==1) {
+                  alert("successfully register");
+                } else {
+                  alert("failed");
+                }
+              }
+          });
+        });
+      });
+  </script>
 
   </body>
 </html>

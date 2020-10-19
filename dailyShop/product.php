@@ -1,5 +1,6 @@
-<?php require_once 'header.php'; ?>
-<?php require_once 'config.php'; ?>
+<?php 
+require_once 'header.php'; 
+require_once 'config.php'; ?>
 
   <!-- / menu -->  
  
@@ -65,18 +66,19 @@
                 $number_of_pages =ceil($number_of_results / $result_per_page);
                 //$page=$_GET['page'];
                 if (isset($_GET['page'])) {
-                    $page=$_GET['page'];;
+                    $pages=$_GET['page'];;
                 } else {
-                    $page=1;
+                    $pages=1;
                 } 
-                $this_page_first_result = ($page-1) * $result_per_page;
-                $sql="SELECT * FROM `products` ORDER BY `pid` DESC LIMIT {$this_page_first_result}, {$result_per_page}";
-               /*  $sql="SELECT * FROM products"; */
+                $this_page_first_result = ($pages-1) * $result_per_page;
+                $sql="SELECT * FROM `products` JOIN `categories` WHERE products.cid= 
+                categories.cid LIMIT {$this_page_first_result}, {$result_per_page}";
+                /*  $sql="SELECT * FROM products"; */
 
           
                 $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
-                  if (mysqli_num_rows($result) >0) {
-                     while ($row = mysqli_fetch_assoc($result)) {
+                if (mysqli_num_rows($result) >0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
                           //print_r($row);
                         ?>
                 <li>
@@ -95,17 +97,26 @@
                     <a href="" class="one" data-id="<?php echo $row["pid"] ?>" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
                   </div>
                   <!-- product badge -->
-                  <span class="aa-badge aa-hot" href="#">HOT!</span>
+                        <?php
+                        if ($row['cname']=="Men" || $row['cname']=="Women") {
+                            ?>
+                            <span class="aa-badge aa-hot" href="#">Fashion!</span>
+                            <?php
+                        } elseif ($row['cname']=="Kids") {
+                            ?>
+                            <span class="aa-badge aa-hot" href="#">Offer!</span>
+                            <?php
+                        } else {
+                            ?>
+                            <span class="aa-badge aa-hot" href="#">Sale!</span>
+                </li>
+                            <?php
                   
-                  </li>
-                        <?php 
-                            }
-                          }
+                        }
+                    }
+                }
                           
-                      ?>
-            
-                      
-                      
+                ?>                     
               </ul> 
               </div>
               </div>
@@ -121,11 +132,6 @@
                         type : "POST",
                         data : {id:id},
                         success : function(data){
-                         
-                        //alert(data);
-                        //console.log(data);
-                         
-
                         $("#show1").html(data); 
                     }  
                       });
@@ -141,48 +147,46 @@
                         while ($row4 = mysqli_fetch_assoc($result4)) {
                             //print_r($row);
                             ?>     
-                               
-                     <!-- / quick view modal --> 
-                     <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">       
-        <div class="modal-dialog">
-          <div class="modal-content">                      
-            <div class="modal-body">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  
-                   <div id="show1"></div>
-                   </div>                        
-                </div>
-                </div>
-                </div>
-    <?php 
-                }
-              } 
-                ?>  
+        <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">       
+          <div class="modal-dialog">
+            <div class="modal-content">                      
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                      <div id="show1"></div>
+              </div>                        
+            </div>
+          </div>
+        </div>
+                            <?php 
+                        }
+                    } 
+                    ?>  
   </div>
   <div class="aa-product-catg-pagination">
     <nav>
       <ul class="pagination">
         <li>
-        <?php if ($page>1) {?>
+        <?php if ($pages>1) {?>
           <a href="#" aria-label="Previous">Prev
             <span aria-hidden="true">&laquo;</span>
           </a>
-          <?php } ?>
+      <?php   }   ?>
         </li>
         <?php
-          for ($i=1; $i<=$number_of_pages; $i++) {
-              if ($i==$page) {
+        for ($i=1; $i<=$number_of_pages; $i++) {
+            if ($i==$pages) {
                   $active='active';
-              } else {
+            } else {
                   $active ='';
-              }
-              ?>
+            }
+            ?>
                 <li <?php echo $active ?>><a href="product.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
               <?php 
-            }
-          ?>
+        }
+        ?>
           <li>
-          <?php if ($number_of_pages>$page) {?>
+          <?php if ($number_of_pages>$pages) {?>
             <a href="#" aria-label="Next">Next
             <span aria-hidden="true">&raquo;</span>
             <?php } ?>
@@ -327,7 +331,8 @@ $(document).ready(function(){
     $(document).on("click",".cat", function(e){
       e.preventDefault();
         var name = $(this).data('id');
-        //alert(name);
+        
+        //alert(page);
         $.ajax({
             url: "categorydisplay.php",
             type: "POST",

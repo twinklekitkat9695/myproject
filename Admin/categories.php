@@ -174,7 +174,10 @@
                 });
                 //Hide Modal Box
                 $("#close-btn").click(function(){
-                    $("#modal-form").hide();
+                  $("#modal-form").hide();
+                    setTimeout(function(){
+                        window.location=window.location
+                      },100);
                 });
                 //Save Update Form
                 $(document).on("click","#edit-submit", function(e){
@@ -188,20 +191,18 @@
                   data : {id: id, name: name},
                   success: function(data) {
                     if(data == 1){
-                      $("#modal-form").hide();
-                      //$("#show").show();
-                      //loadTable();
-                        //alert("successfully updated");
-                        //$("#modal").hide();
+                      alert("successfully updated");
+                      setTimeout(function(){
+                        window.location=window.location
+                      },100);
                     }
                   }
+      
                 });
                 //$("#show").show();
                 loadTable();
-                $("#show").show();
+              });
         });
-        loadTable();
-      });
   </script>
 </body>
 </html>

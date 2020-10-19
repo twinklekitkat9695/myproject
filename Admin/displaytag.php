@@ -24,8 +24,8 @@
         <thead>
               <tr>
                 <th><input class="check-all" type="checkbox" /></th>
-                <th>Category Id</th>
-                <th>Category Name</th>
+                <th>Tag Id</th>
+                <th>Tag Name</th>
                 <th width="100px">action</th>
               </tr>
               <tfoot>
@@ -48,7 +48,7 @@
                     } else {
                         $active ="";
                     }
-    $output.=  '<a class="number" title="1" href="category.php?page='.$i.'">'. $i.'</a>';
+    $output.=  '<a class="number" title="1" href="tag.php?page='.$i.'">'. $i.'</a>';
                   }
                   $output.=  '<a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
               </div> 
