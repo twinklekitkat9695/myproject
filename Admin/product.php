@@ -1,6 +1,7 @@
-<?php include("header.php");?>
-      <?php include("sidebar.php");?>
-      <?php include("config.php");?>
+<?php 
+include("header.php");?>
+<?php include("sidebar.php");?>
+<?php include("config.php");?>
 
       <div id="main-content"> <!-- Main Content Section with everything -->
 
@@ -132,16 +133,6 @@
     
 
 <?php require "footer.php";?>
-
-<!-- <div id="#modal">
-  <div id="modal-form">
-      <h2>Edit Form</h2>
-      <div id="close-btn">X</div>
-      <table cellpadding="10px" width="100%">
-      </table>
-  </div>
-</div> -->
-
   <script>
       $(document).ready(function(){
         function loadTable(){
@@ -187,18 +178,13 @@
         $(document).on("click",".delete", function(){
                 //e.preventDefault();
                 var name = $(this).data('id');
-                //var element=this;
-                //alert(name);
                 if(confirm("Are you sure?")) {
                     $.ajax({
                     url: "delete.php",
                     type : "POST",
                     data : {sid:name},
                     success : function(data){
-                    //alert(data);
-                    //console.log(data);
                     if(data == 1){
-                    //$(element).closest("tr").fadeOut();
                     alert("Successfully Deleted");  
                     } else {
                     alert("failed");
@@ -229,7 +215,9 @@
                 });
                 //Hide Modal Box
                 $("#close-btn").click(function(){
-                    $("#modal-form").hide();
+                  setTimeout(function(){
+                        window.location=window.location
+                      },100);
                 });
                 //Save Update Form
                 $(document).on("click","#edit-submit", function(){
@@ -247,11 +235,10 @@
                   data : {id: id, name: name, price: price, path: path, category:category},
                   success: function(data) {
                     if(data == 1){
-                      $("#modal-form").hide();
-                      //$("#show").show();
-                      //loadTable();
-                        //alert("successfully updated");
-                        //$("#modal").hide();
+                      alert("successfully updated");
+                      setTimeout(function(){
+                        window.location=window.location
+                      },100);
                     }
                   }
                 });

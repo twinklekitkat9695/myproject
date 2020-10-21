@@ -1,6 +1,9 @@
 <?php session_start(); ?>
-<?php require_once 'header.php' ?>
-<?php require_once 'config.php' ?>
+<?php require_once 'header.php'; ?>
+<?php require_once 'config.php';
+$sum="";
+$total=array();
+?>
 
   <!-- / menu -->  
  
@@ -28,6 +31,12 @@
        <div class="col-md-12">
          <div class="cart-view-area">
            <div class="cart-view-table">
+            <div style="display:<?php if (isset($_SESSION['showAlert'])) {echo $_SESSION['showAlert'];
+            } else {echo 'none';} unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong><?php if (isset($_SESSION['message'])) {echo $_SESSION['message'];}
+                unset($_SESSION['message']); ?></strong>
+              </div>
              <form action="">
                <div class="table-responsive">
                   <table class="table">
@@ -44,7 +53,7 @@
                     <tbody>
                     <?php
 
-                    if (empty($_SESSION['cart'])) {       
+                   /*  if (empty($_SESSION['cart'])) {       
                         global $usercart ;
                         $usercart = array();
                     } else {
@@ -56,42 +65,36 @@
                     }
                     $total=array();
 
-                    foreach ($_SESSION['cart'] as $key => $value) {
-                        $sql="SELECT * FROM products WHERE `pid`= '{$value}'";
-              
-                         $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
+                    foreach ($_SESSION['cart'] as $key => $value) { */
+                        
+                      $sql="SELECT * FROM cart";
+                      $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
                       
-                        if (mysqli_num_rows($result) > 0 ) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $total[]=$row["price"];
-                                ?>
-
-                                <tr>
-                                    <td><a class="remove" href="?Id=<?php echo $key ?>"><fa class="fa fa-close"></fa></a></td>
-                                    <td><a href="#"><img src="<?php echo $row["path"] ?>" alt="img"></a></td>
-                                    <td><a class="aa-cart-title" href="#"><?php echo $row["name"] ?></a></td>
-                                    <td>$<?php echo $row["price"] ?></td>
-                                    <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                                    <td>$<?php echo $row["price"] ?></td>
-                                </tr>
-                                    <?php
-                        
-                        
-
-                            }
-                        }  
+                      if (mysqli_num_rows($result) > 0 ) {
+                          while ($row = mysqli_fetch_assoc($result)) {
+                              $total[]=$row["price"] * $row["quantity"];
+                              ?>
+                              <tr>
+                                  <td>
+                                    <a class="remove" href="cartaction.php?remove=<?php echo $row['id'] ?>" onclick="return confirm
+                                    ('Are you sure want to delete this item');"><fa class="fa fa-close"></fa>   </a>
+                                  </td>
+                                  <input type="hidden" class="cid" value="<?php echo $row['id'] ?>">
+                                  <td><a href="#"><img src="<?php echo $row["path"] ?>" alt="img"></a></td>
+                                  <td><a class="aa-cart-title" href="#"><?php echo $row["name"] ?></a></td>
+                                  <td>$<?php echo $row["price"] ?></td>
+                                  <input type="hidden" class="price" value="<?php echo $row['price'] ?>">
+                                  <td><input class="aa-cart-quantity qty" type="number" value="<?php echo $row["quantity"] ?>"></td>
+                                  <td>$<?php echo $row["price"]  * $row["quantity"] ?></td>
+                              </tr>
+                                  <?php
+                      
+                          }
+                        //}  
                          
-                        //$sum=array_sum($total);
+                        $sum=array_sum($total);
                     }           
-                      $sum=array_sum($total);    
-                      if (isset($_GET['Id'])) {
-                        $id=$_GET['Id'];
-                        unset($_SESSION['cart'][$id]);
-                        //redirect("cart.php");
-                        //header("Location: cart.php");
-                    }
-                          ?>
-                                
+                    ?>          
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
                           <div class="aa-cart-coupon">
@@ -120,7 +123,7 @@
                    </tr>
                  </tbody>
                </table>
-               <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+               <a href="checkout.php" class="aa-cart-view-btn" <?php ($sum >1)?"":"disabled"; ?>>Proced to Checkout</a>
              </div>
            </div>
          </div>
@@ -134,3 +137,34 @@
 ?>
 
 <?php require_once 'footer.php' ?>
+<script>
+$(document).ready(function(){
+    $(".qty").on("change", function(){
+       // e.preventDefault();
+        var $id = $(this).closest('tr');
+        var cid = $id.find(".cid").val();
+        var price = $id.find(".price").val();
+        var qty = $id.find(".qty").val();
+        location.reload(true);
+        //console.log(qty);
+        //console.log(cid);
+        //alert(price);
+        $.ajax({
+          url:'cartaction.php',
+          method:'post',
+          cache:'false',
+          data:{id:cid, price:price, qty:qty},
+          success:function(data){
+            //alert(data);
+          }
+        });
+        /* function load_cart(){
+          $.ajax({
+            url:'cartaction.php',
+            method:'get',
+            data:{}
+          })
+        } */
+    });
+});
+</script>

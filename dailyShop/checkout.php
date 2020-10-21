@@ -1,4 +1,6 @@
-<?php require_once 'header.php' ?>
+<?php 
+require_once 'header.php' ?>
+<?php require_once 'config.php' ?>
 
   <!-- / menu -->  
  
@@ -10,7 +12,7 @@
       <div class="aa-catg-head-banner-content">
         <h2>Checkout Page</h2>
         <ol class="breadcrumb">
-          <li><a href="index.html">Home</a></li>                   
+          <li><a href="index.php">Home</a></li>                   
           <li class="active">Checkout</li>
         </ol>
       </div>
@@ -290,31 +292,38 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>T-Shirt <strong> x  1</strong></td>
-                          <td>$150</td>
-                        </tr>
-                        <tr>
-                          <td>Polo T-Shirt <strong> x  1</strong></td>
-                          <td>$250</td>
-                        </tr>
-                        <tr>
-                          <td>Shoes <strong> x  1</strong></td>
-                          <td>$350</td>
-                        </tr>
+                      <?php
+                        $total=0;
+                        $tax=0;
+                        $subtotal=0;
+                        $sql="SELECT * FROM `cart`";
+                        $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
+                        if (mysqli_num_rows($result) >0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $total+=$row["price"];
+                                ?>
+                    <tr>
+                      <td><?php echo $row['name'] ?><strong> x  <?php echo $row['quantity'] ?></strong></td>
+                      <td>$<?php echo $row['price'] ?></td>
+                    </tr>
+                                <?php
+                            }
+                        }
+                        ?>
                       </tbody>
                       <tfoot>
                         <tr>
                           <th>Subtotal</th>
-                          <td>$750</td>
+                          <td>$<?php echo $total ?></td>
                         </tr>
                          <tr>
+                         <?php $tax = $total+($total*10/100) ?>
                           <th>Tax</th>
-                          <td>$35</td>
+                          <td>$<?php echo $tax ?></td>
                         </tr>
                          <tr>
                           <th>Total</th>
-                          <td>$785</td>
+                          <td><?php echo $total+$tax ?></td>
                         </tr>
                       </tfoot>
                     </table>

@@ -10,43 +10,43 @@
             <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/1.jpg" alt="Men slide img" />
+                <img data-seq src="resources/images/icons/m5.jpg" alt="Men slide img" />
               </div>
               <div class="seq-title">
                <span data-seq>Save Up to 75% Off</span>                
                 <h2 data-seq>Men Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <p data-seq>TOP COLLECTION FOR MEN</p>
+                <a data-seq href="product.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/2.jpg" alt="Wristwatch slide img" />
+                <img data-seq src="resources/images/icons/watch.jpeg" alt="Wristwatch slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 40% Off</span>                
                 <h2 data-seq>Wristwatch Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <p data-seq>WATCHES AT LOW PRICE</p>
+                <a data-seq href="product.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/3.jpg" alt="Women Jeans slide img" />
+                <img data-seq src="resources/images/icons/w4.jpg" alt="Women Jeans slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 75% Off</span>                
                 <h2 data-seq>Jeans Collection</h2>                
                 <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="product.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->           
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/4.jpg" alt="Shoes slide img" />
+                <img data-seq src="resources/images/icons/juti.jpg" alt="Shoes slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 75% Off</span>                
@@ -58,13 +58,13 @@
             <!-- single slide item -->  
              <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/5.jpg" alt="Male Female slide img" />
+                <img data-seq src="resources/images/icons/mn.jpg" alt="Male Female slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 50% Off</span>                
                 <h2 data-seq>Best Collection</h2>                
                 <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="product.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>                   
           </ul>
@@ -155,7 +155,7 @@
               <div class="aa-product-inner">
                 <!-- start prduct navigation -->
                  <ul class="nav nav-tabs aa-products-tab">
-                    <li class="active"><a href="#men" data-toggle="tab">Men</a></li>
+                    <li><a class ="cat" href="" data-id="Men" data-toggle="tab">Men</a></li>
                     <li><a href="#women" data-toggle="tab">Women</a></li>
                     <li><a href="#sports" data-toggle="tab">Sports</a></li>
                     <li><a href="#electronics" data-toggle="tab">Electronics</a></li>

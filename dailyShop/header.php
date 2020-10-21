@@ -1,3 +1,5 @@
+                  
+<?php require_once "config.php" ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,14 +36,12 @@
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+   <!--  [if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <![endif] -->
 
   </head>
-  <!-- !Important notice -->
-  <!-- Only for product page body tag have to added .productPage class -->
   <body class="productPage">  
    <!-- wpf loader Two -->
     <div id="wpf-loader-two">          
@@ -103,10 +103,10 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="account.html">My Account</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
+                  <li><a href="account.php">My Account</a></li>
+                  <li class="hidden-xs"><a href="wishlist.php">Wishlist</a></li>
+                  <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
+                  <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 </ul>
               </div>
@@ -135,40 +135,57 @@
               </div>
               <!-- / logo  -->
                <!-- cart box -->
+               <?php
+                    $total=0;
+                    $qty=0;
+                    $sql="SELECT * FROM `cart`";
+                    $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
+                            ?>
               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
-                  <span class="aa-cart-notify">2</span>
+                  <?php
+                      if (mysqli_num_rows($result) >0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $qty+=$row["quantity"];
+                         } ?>
+                  
+                  <span class="aa-cart-notify"><?php echo $qty?></span>
                 </a>
+                <?php } ?>
                 <div class="aa-cartbox-summary">
-                  <ul>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>                    
-                    <li>
+                    <ul>
+                      <?php
+                        $sql = "SELECT * FROM cart";
+                        $result = mysqli_query($conn, $sql) or die("SQL QUERY FAILED");
+                        $total=0;
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row=$result->fetch_assoc()) {
+                                ?>
+                        <li>
+                          <a class="aa-cartbox-img" href="#"><img src="<?php echo $row["path"]; ?>" alt="img"></a>
+                          <div class="aa-cartbox-info">
+                            <h4><a href="#"><?php echo $row["name"] ?> </a></h4>
+                              <p><?php echo $row["quantity"] ?> x <?php echo $row["price"] ?></p>
+                          </div>
+                          <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
+                        </li>
+                                <?php 
+                                  $total =$total+$row["quantity"]*$row["price"];
+
+                                 }
+                            } 
+                            ?>
                       <span class="aa-cartbox-total-title">
                         Total
                       </span>
                       <span class="aa-cartbox-total-price">
-                        $500
+                       $ &nbsp;&nbsp;<?php echo $total ?>
                       </span>
                     </li>
                   </ul>
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="#">Checkout</a>
+                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.php">Checkout</a>
                 </div>
               </div>
               <!-- / cart box -->
@@ -205,8 +222,8 @@
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="#">Men <span class="caret"></span></a>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="product.php">Men <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="#">Casual</a></li>
                   <li><a href="#">Sports</a></li>
@@ -225,7 +242,7 @@
                   </li>
                 </ul>
               </li>
-              <li><a href="#">Women <span class="caret"></span></a>
+              <li><a href="product.php">Women <span class="caret"></span></a>
                 <ul class="dropdown-menu">  
                   <li><a href="#">Kurta & Kurti</a></li>                                                                
                   <li><a href="#">Trousers</a></li>              
@@ -267,7 +284,7 @@
                   </li>
                 </ul>
               </li>
-              <li><a href="#">Kids <span class="caret"></span></a>
+              <li><a href="product.php">Kids <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="#">Casual</a></li>
                   <li><a href="#">Sports</a></li>
@@ -286,7 +303,7 @@
                   </li>
                 </ul>
               </li>
-              <li><a href="#">Sports</a></li>
+              <li><a href="#product.php">Sports</a></li>
              <li><a href="#">Digital <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="#">Camera</a></li>
@@ -296,7 +313,7 @@
                   <li><a href="#">Accesories</a></li>                
                 </ul>
               </li>
-              <li><a href="#">Furniture</a></li>            
+              <li><a href="product.php">Furniture</a></li>            
              <li><a href="blog-archive.html">Blog <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="blog-archive.html">Blog Style 1</a></li>
@@ -304,12 +321,12 @@
                   <li><a href="blog-single.html">Blog Single</a></li>                
                 </ul>
               </li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="contact.php">Contact</a></li>
               <li><a href="#">Pages <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
-                  <li><a href="product.html">Shop Page</a></li>
-                  <li><a href="product-detail.html">Shop Single</a></li>                
-                  <li><a href="404.html">404 Page</a></li>                
+                  <li><a href="product.php">Shop Page</a></li>
+                  <li><a href="product-detail.php">Shop Single</a></li>                
+                  <li><a href="404.php">404 Page</a></li>                
                 </ul>
               </li>
             </ul>

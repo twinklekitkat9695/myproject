@@ -84,7 +84,7 @@ require_once 'config.php'; ?>
                 <li>
                   <figure>
                     <a class="aa-product-img" href="#"><img src="<?php echo $row["path"] ?>" alt="polo shirt img"></a>
-                    <a class="aa-add-card-btn" href="cart.php?id=<?php echo $row["pid"] ?>"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                    <a class="aa-add-card-btn" href="cartaction.php?id=<?php echo $row["pid"] ?>"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                     <figcaption>
                       <h4 class="aa-product-title"><a href="#"><?php echo $row["name"] ?></a></h4>
                       <span class="aa-product-price">$<?php echo $row["price"] ?></span><span class="aa-product-price"><del><?php echo $row["price"] ?></del></span>

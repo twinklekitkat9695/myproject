@@ -19,11 +19,11 @@ if (mysqli_num_rows($result1) > 0 ) {
                 <img src="'.$row1['path'].'" class="simpleLens-big-image">
             </a>
         </div>
-    </div>
+        </div>
     
-    </div>
-    </div>
-  </div>
+                    </div>
+                  </div>
+                </div>
   
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="aa-product-view-content">
@@ -58,7 +58,7 @@ if (mysqli_num_rows($result1) > 0 ) {
         </p>
       </div>
       <div class="aa-prod-view-bottom">
-        <a  id = "cart" href="cart.php?id='.$row1['pid'].'" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+        <a  id = "cart" href="cartaction.php?id='.$row1['pid'].'" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
         <a id= "detail"  href="product-detail.php?pId='.$row1['pid'].'" class="aa-add-to-cart-btn">View Details</a>
       </div>
     </div>
@@ -72,22 +72,3 @@ if (mysqli_num_rows($result1) > 0 ) {
     echo "Error : " .$sql. "<br>" .$conn -> error;
 }
 ?>
-<!-- <script>
-$(document).ready(function(){
-    $(document).on("click",".cart", function(e){
-      e.preventDefault();
-      var name1 = $(this).data('id');
-      //var n=unserialize(name1);
-      alert(name1);
-      $.ajax({
-          url: "cart.php",
-          type: "POST",
-          data: {id1: name1},
-          success: function(data) {
-              //alert(data);
-          $("#hide").hide();
-          $("#show").html(data);
-          }
-    });
-  });
-</script> -->
