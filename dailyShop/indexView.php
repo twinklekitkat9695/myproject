@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
 $pd=$_POST["id"];
-$sql1="SELECT * FROM products JOIN categories where `pid` ='{$pd}'";
+$sql1="SELECT * FROM products JOIN categories where `pid` ='{$pd}' AND products.cid=categories.cid";
 $result1 = mysqli_query($conn, $sql1) or die("SQL Query Failed.");
 if (mysqli_num_rows($result1) > 0 ) {
   $row1 = mysqli_fetch_assoc($result1);

@@ -27,7 +27,26 @@
                     <a href="" id="one" data-id='<?php echo $row["pid"] ?>' data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
                   </div>
                   <!-- product badge -->
-                  <span class="aa-badge aa-hot" href="#">HOT!</span>
+                  <?php
+                  if ($row['cname']=="Men") {
+                      ?>
+                      <span class="aa-badge aa-hot" href="#">Fashion!</span>
+                      <?php
+                  } elseif ($row['cname']=="Kids") {
+                      ?>
+                      <span class="aa-badge aa-sale" href="#">Offer!</span>
+                      <?php
+                  } elseif ($row['cname']=="Women") {
+                    ?>
+                    <span class="aa-badge aa-hot" href="#">Hot!</span>
+                    <?php
+                  } else {
+                      ?>
+                      <span class="aa-badge aa-sale" href="#">Sale!</span>
+                            <?php
+                  
+                        }
+                        ?>
                   
                   </li>
                       <?php 

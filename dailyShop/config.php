@@ -13,6 +13,7 @@
  /**
   * $products
   */
+$hostname="http://localhost/project/dailyShop";
 $dbhost='localhost';
 $dbname="project";
 $dbusername="root";

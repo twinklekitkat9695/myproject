@@ -98,17 +98,21 @@ require_once 'config.php'; ?>
                   </div>
                   <!-- product badge -->
                         <?php
-                        if ($row['cname']=="Men" || $row['cname']=="Women") {
+                        if ($row['cname']=="Men") {
                             ?>
                             <span class="aa-badge aa-hot" href="#">Fashion!</span>
                             <?php
                         } elseif ($row['cname']=="Kids") {
                             ?>
-                            <span class="aa-badge aa-hot" href="#">Offer!</span>
+                            <span class="aa-badge aa-sale" href="#">Offer!</span>
                             <?php
+                        } elseif ($row['cname']=="Women") {
+                          ?>
+                          <span class="aa-badge aa-hot" href="#">Hot!</span>
+                          <?php
                         } else {
                             ?>
-                            <span class="aa-badge aa-hot" href="#">Sale!</span>
+                            <span class="aa-badge aa-sale" href="#">Sale!</span>
                 </li>
                             <?php
                   
@@ -133,35 +137,33 @@ require_once 'config.php'; ?>
                         data : {id:id},
                         success : function(data){
                         $("#show1").html(data); 
-                    }  
+                        }  
                       });
-                });
-              });
+                    });
+                  });
                           
               </script>
-                  <?php
-                    $sql4="SELECT * FROM products";
-              
-                    $result4 = mysqli_query($conn, $sql4) or die("SQL Query Failed.");
-                    if (mysqli_num_rows($result4) > 0 ) {
-                        while ($row4 = mysqli_fetch_assoc($result4)) {
-                            //print_r($row);
-                            ?>     
-        <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">       
-          <div class="modal-dialog">
-            <div class="modal-content">                      
-              <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-                      <div id="show1"></div>
-              </div>                        
+    <?php
+    $sql4="SELECT * FROM products";
+    $result4 = mysqli_query($conn, $sql4) or die("SQL Query Failed.");
+    if (mysqli_num_rows($result4) > 0 ) {
+        while ($row4 = mysqli_fetch_assoc($result4)) {
+              //print_r($row);
+            ?>     
+            <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">       
+              <div class="modal-dialog">
+                <div class="modal-content">                      
+                  <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <div id="show1"></div>
+                  </div>                        
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-                            <?php 
-                        }
-                    } 
-                    ?>  
+            <?php 
+        }
+    } 
+    ?>  
   </div>
   <div class="aa-product-catg-pagination">
     <nav>

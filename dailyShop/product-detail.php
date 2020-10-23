@@ -26,7 +26,7 @@
 
     $pd = $_GET["pId"];
 
-    $sql = "SELECT * FROM `products` WHERE `pid`='{$pd}' ";
+    $sql = "SELECT * FROM `products` JOIN `categories` WHERE `pid`='{$pd}' ";
     $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
     if (mysqli_num_rows($result) > 0 ) {
       while ($row = mysqli_fetch_assoc($result)) {
@@ -43,8 +43,10 @@
                         <div class="aa-product-view-slider">                                
                             <div id="demo-1" class="simpleLens-gallery-container">
                             <div class="simpleLens-container">
+                           
                                 <div class="simpleLens-big-image-container"><a data-lens-image="<?php echo $row["path"] ?>" class="simpleLens-lens-image"><img src="<?php echo $row["path"] ?>" class="simpleLens-big-image"></a></div>
                             </div>
+                                 
                             <!-- <div class="simpleLens-thumbnails-container">
                                 <a data-big-image="img/view-slider/medium/polo-shirt-1.png" data-lens-image="img/view-slider/large/polo-shirt-1.png" class="simpleLens-thumbnail-wrapper" href="#">
                                     <img src="">
@@ -95,7 +97,7 @@
                                 </select>
                             </form>
                             <p class="aa-prod-category">
-                                Category: <a href="#"><?php echo $row["cid"] ?></a>
+                                Category: <a href="#"><?php echo $row["cname"] ?></a>
                             </p>
                             </div>
                             <div class="aa-prod-view-bottom">

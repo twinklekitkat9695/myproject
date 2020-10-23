@@ -1,6 +1,13 @@
 <?php 
-require_once 'header.php' ?>
-<?php require_once 'config.php' ?>
+
+ob_start();
+session_start();
+require_once 'header.php';
+require_once 'config.php'; 
+if (!isset($_SESSION["username"])) {
+    header("Location: {$hostname}/account.php");
+}
+?>
 
   <!-- / menu -->  
  
@@ -12,8 +19,10 @@ require_once 'header.php' ?>
       <div class="aa-catg-head-banner-content">
         <h2>Checkout Page</h2>
         <ol class="breadcrumb">
-          <li><a href="index.php">Home</a></li>                   
-          <li class="active">Checkout</li>
+          <li><a href="index.php">Home</a></li>                    
+          <li class="active">Checkout</li><br>
+          <h2>Welcome !!  <?php echo $_SESSION["username"]; ?></h2>
+          <li><a href="logout.php"> Logout</a></li> 
         </ol>
       </div>
      </div>
@@ -446,16 +455,22 @@ require_once 'header.php' ?>
         <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4>Login or Register</h4>
-          <form class="aa-login-form" action="">
+          <form action="<?php $_SERVER["PHP_SELF"];?>" class="aa-login-form" method="post">
+             <div style="display:<?php if (isset($_SESSION['showAlert'])) {echo $_SESSION['showAlert'];
+                      } else {echo 'none';} unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                          <strong><?php if (isset($_SESSION['message'])) {echo $_SESSION['message'];}
+                          unset($_SESSION['message']); ?></strong>
+                  </div>
             <label for="">Username or Email address<span>*</span></label>
-            <input type="text" placeholder="Username or email">
+            <input type="text" placeholder="Username or email" name="username">
             <label for="">Password<span>*</span></label>
-            <input type="password" placeholder="Password">
-            <button class="aa-browse-btn" type="submit">Login</button>
+            <input type="password" placeholder="Password" name="password">
+            <button class="aa-browse-btn" type="submit" name="login">Login</button>
             <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
             <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
             <div class="aa-register-now">
-              Don't have an account?<a href="account.html">Register now!</a>
+              Don't have an account?<a href="account.php">Register now!</a>
             </div>
           </form>
         </div>                        
@@ -487,3 +502,27 @@ require_once 'header.php' ?>
     
   </body>
 </html>
+<?php 
+    if (isset($_POST["login"])) {
+        $username = mysqli_real_escape_string($conn, isset($_POST['username']) ? $_POST['username'] : '');
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+        $sql = "SELECT `uid`, `uname` FROM users WHERE uemail = '".$username."' 
+        and upassword = '".$password."'";
+        $result = mysqli_query($conn, $sql) or die("Query failed");
+        if (mysqli_num_rows($result)>0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $_SESSION["username"] =$row["uname"];
+                $_SESSION["user_id"] =$row["uid"];
+                if (isset($_SESSION["user_id"])) {
+                    header("Location: cart.php");
+              }
+                //header("Location: cart.php");            
+            }
+        } else {
+            $_SESSION['showAlert'] ='block';
+            $_SESSION['message'] ="username or password doesnt exist";
+        }
+    }
+    ob_end_flush();
+?>

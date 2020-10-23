@@ -1,5 +1,11 @@
                   
-<?php require_once "config.php" ?>
+<?php 
+
+//session_start();
+require_once "config.php";
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -126,7 +132,7 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
                 </a>
@@ -135,12 +141,13 @@
               </div>
               <!-- / logo  -->
                <!-- cart box -->
-               <?php
-                    $total=0;
-                    $qty=0;
-                    $sql="SELECT * FROM `cart`";
-                    $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
-                            ?>
+          <?php
+              $total=0;
+              $qty=0;
+              if(isset($_SESSION['user_id'])) {
+              $sql="SELECT * FROM cart WHERE `uid`={$_SESSION['user_id']}";
+              $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
+                      ?>
               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
@@ -157,7 +164,8 @@
                 <div class="aa-cartbox-summary">
                     <ul>
                       <?php
-                        $sql = "SELECT * FROM cart";
+                      
+                        $sql = "SELECT * FROM cart WHERE `uid`={$_SESSION['user_id']}";
                         $result = mysqli_query($conn, $sql) or die("SQL QUERY FAILED");
                         $total=0;
                         if (mysqli_num_rows($result) > 0) {
@@ -176,6 +184,7 @@
 
                                  }
                             } 
+                          
                             ?>
                       <span class="aa-cartbox-total-title">
                         Total
@@ -190,6 +199,25 @@
               </div>
               <!-- / cart box -->
               <!-- search box -->
+              <?php 
+            } else {
+                      ?>
+                      <!-- cart box -->
+              <div class="aa-cartbox">
+                <a class="aa-cart-link" href="#">
+                  <span class="fa fa-shopping-basket"></span>
+                  <span class="aa-cart-title">SHOPPING CART</span>
+                  <span class="aa-cart-notify">add item</span>
+                </a>
+                <div class="aa-cartbox-summary">
+                  
+                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.php">Checkout</a>
+                </div>
+              </div>
+              <!-- / cart box -->
+      <?php
+            }
+      ?>
               <div class="aa-search-box">
                 <form action="">
                   <input type="text" name="" id="" placeholder="Search here ex. 'man' ">

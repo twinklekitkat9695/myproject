@@ -2,7 +2,7 @@
     require_once "config.php";
     //$conn = mysqli_connect("localhost", "root", "", "project") or die("Connection Failed");
     // $sql = "SELECT * FROM products";
-    $result_per_page =10;
+    $result_per_page =20;
     $sq="SELECT * FROM products";
   
     $res = mysqli_query($conn, $sq) or die("SQL Query Failed.");

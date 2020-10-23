@@ -4,11 +4,15 @@ session_start();
 $price="";
 $name="";
 $path="";
+//$uid="";
 require_once 'config.php';
-if (isset($_GET['id'])) {
+/* if (isset($_SESSION["username"])) {
+    $uid=$_SESSION["username"];
+} */
+if (isset($_GET['id']) && isset($_SESSION['username'])) {
     $pid=$_GET['id'];
     $qty=1;
-    $user=4;
+    $uid=$_SESSION['username'];
     $sql="SELECT * FROM cart WHERE `pid`= '{$pid}'";
     $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
     if (mysqli_num_rows($result) == 0 ) {
@@ -22,7 +26,7 @@ if (isset($_GET['id'])) {
             }
         }
         $sql="INSERT INTO cart (`uid`, `pid`, `price`, `quantity`, `name`, `path`)
-              VALUES ('".$user."', '".$pid."', '".$price."', '".$qty."',
+              VALUES ((SELECT `uid` FROM users WHERE uname = '".$uid."'), '".$pid."', '".$price."', '".$qty."',
                '".$name."', '".$path."')";
         if (mysqli_query($conn, $sql)) {            
             echo '

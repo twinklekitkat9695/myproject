@@ -1,6 +1,12 @@
-<?php session_start(); ?>
-<?php require_once 'header.php'; ?>
-<?php require_once 'config.php';
+<?php 
+
+ob_start();
+session_start(); 
+require_once 'header.php';
+require_once 'config.php';
+if (!isset($_SESSION["user_id"])) {
+  header("Location: {$hostname}/account.php");
+}
 $sum="";
 $total=array();
 ?>
@@ -15,8 +21,11 @@ $total=array();
       <div class="aa-catg-head-banner-content">
         <h2>Cart Page</h2>
         <ol class="breadcrumb">
-          <li><a href="index.php">Home</a></li>                   
-          <li class="active">Cart</li>
+          
+          <li><a href="index.php">Home</a></li>                    
+          <li class="active">Cart</li><br>
+          <h2>Welcome !!  <?php echo $_SESSION["username"]; ?></h2>
+          <li><a href="logout.php"> Logout</a></li> 
         </ol>
       </div>
      </div>
@@ -67,7 +76,7 @@ $total=array();
 
                     foreach ($_SESSION['cart'] as $key => $value) { */
                         
-                      $sql="SELECT * FROM cart";
+                    $sql="SELECT * FROM cart WHERE `uid`={$_SESSION['user_id']}";
                       $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
                       
                       if (mysqli_num_rows($result) > 0 ) {
@@ -155,7 +164,7 @@ $(document).ready(function(){
           cache:'false',
           data:{id:cid, price:price, qty:qty},
           success:function(data){
-            //alert(data);
+          alert(data);
           }
         });
         /* function load_cart(){
@@ -168,3 +177,4 @@ $(document).ready(function(){
     });
 });
 </script>
+<?php ob_end_flush(); ?>
